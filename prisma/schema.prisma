@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model address {
+  id            Int             @id @default(autoincrement())
+  street        String
+  number        String
+  complement    String?
+  district      String
+  city          String
+  state         String
+  clients       clients[]
+  professionals professionals[]
+}
+
+model clients {
+  id         Int        @id @default(autoincrement())
+  image      String
+  name       String     @unique
+  birthdate  DateTime
+  cpf        String     @unique @db.VarChar(11)
+  sex        Sex
+  phone      String     @unique @db.VarChar(50)
+  email      String     @unique @db.VarChar(120)
+  password   String
+  address_id Int
+  createdAt  DateTime   @default(now())
+  address    address    @relation(fields: [address_id], references: [id])
+  schedule   schedule[]
+}
+
+model professionals {
+  id            Int        @id @default(autoincrement())
+  image         String
+  name          String     @unique
+  birthdate     DateTime
+  cpf           String     @unique @db.VarChar(11)
+  sex           Sex
+  phone         String     @unique @db.VarChar(50)
+  email         String     @unique @db.VarChar(120)
+  address_id    Int
+  office        String
+  admissiondate DateTime   @default(now())
+  address       address    @relation(fields: [address_id], references: [id])
+  sectors       sectors[]
+  schedule      schedule[]
+}
+
+model schedule {
+  id               Int           @id @default(autoincrement())
+  date             DateTime
+  hour             Int
+  clients          clients       @relation(fields: [clients_id], references: [id])
+  clients_id       Int
+  professionals    professionals @relation(fields: [professionals_id], references: [id])
+  professionals_id Int
+  services         services      @relation(fields: [services_id], references: [id])
+  services_id      Int
+}
+
+model sectors {
+  id              Int           @id @default(autoincrement())
+  name            String
+  professional_id Int
+  professionals   professionals @relation(fields: [professional_id], references: [id])
+  services        services[]
+}
+
+model services {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String?
+  price       Int
+  sector_id   Int
+  sectors     sectors    @relation(fields: [sector_id], references: [id])
+  schedule    schedule[]
+}
+
+enum Sex {
+  female
+  male
+  other
+}
