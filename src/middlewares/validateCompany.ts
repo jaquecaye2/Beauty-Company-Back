@@ -1,14 +1,15 @@
 import { NextFunction, Request, Response } from "express";
 
-import { findById } from "../repositories/usersRepository";
+import { findById } from "../repositories/companiesRepository";
 import Jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
-async function validateUser(
+async function validateCompany(
   request: Request,
   response: Response,
   next: NextFunction
 ) {
+  
   dotenv.config();
 
   const { authorization } = request.headers;
@@ -47,4 +48,4 @@ async function validateUser(
   }
 }
 
-export default validateUser;
+export default validateCompany;

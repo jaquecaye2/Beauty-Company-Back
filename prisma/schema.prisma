@@ -7,16 +7,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model address {
-  id            Int             @id @default(autoincrement())
-  street        String
-  number        String
-  complement    String?
-  district      String
-  city          String
-  state         String
-  clients       clients[]
-  professionals professionals[]
+model companies {
+  id       Int    @id @default(autoincrement())
+  email    String @unique @db.VarChar(120)
+  password String
 }
 
 model clients {
@@ -26,12 +20,16 @@ model clients {
   birthdate  DateTime
   cpf        String     @unique @db.VarChar(11)
   sex        Sex
+  street     String
+  number     String
+  complement String?
+  district   String
+  city       String
+  state      String
   phone      String     @unique @db.VarChar(50)
   email      String     @unique @db.VarChar(120)
   password   String
-  address_id Int
   createdAt  DateTime   @default(now())
-  address    address    @relation(fields: [address_id], references: [id])
   schedule   schedule[]
 }
 
@@ -44,10 +42,14 @@ model professionals {
   sex           Sex
   phone         String     @unique @db.VarChar(50)
   email         String     @unique @db.VarChar(120)
-  address_id    Int
+  street        String
+  number        String
+  complement    String?
+  district      String
+  city          String
+  state         String
   office        String
   admissiondate DateTime   @default(now())
-  address       address    @relation(fields: [address_id], references: [id])
   sectors       sectors[]
   schedule      schedule[]
 }
