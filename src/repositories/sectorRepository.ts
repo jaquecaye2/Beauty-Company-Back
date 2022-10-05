@@ -2,6 +2,11 @@ import { prisma } from "../config/database";
 
 import { typeSectorData } from "../types/sectorType";
 
+export async function findById(id: number) {
+  const result = await prisma.sectors.findUnique({ where: { id } });
+  return result;
+}
+
 export async function findByName(name: string) {
   const result = await prisma.sectors.findUnique({ where: { name } });
   return result;
