@@ -6,12 +6,14 @@ import {
   createClient,
   updateClient,
   deleteClient,
-} from "../../controllers/company/authController";
+} from "../../controllers/company/clientController";
 import validateCompany from "../../middlewares/validateCompany";
+import { validateSchema } from "../../middlewares/validateSchema";
+import clientSchema from "../../schemas/clientSchema";
 
 const router = Router();
 
-router.post("/client", validateCompany, createClient);
+router.post("/client", validateCompany, validateSchema(clientSchema), createClient);
 
 router.get("/clients", validateCompany, showClients);
 

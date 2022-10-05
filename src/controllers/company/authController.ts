@@ -1,27 +1,16 @@
 import { Request, Response } from "express";
+import { loginCompany } from "../../services/company/authService";
 
+import { typeCompanyData } from "../../types/companyType";
 
-export async function showClients(request: Request, response: Response) {
+export async function signin(request: Request, response: Response) {
+  const user: typeCompanyData = request.body;
 
-  response.status(500).send();
-}
+  const token = await loginCompany(user);
 
-export async function showClient(request: Request, response: Response) {
-
-  response.status(500).send();
-}
-
-export async function createClient(request: Request, response: Response) {
-
-  response.status(500).send();
-}
-
-export async function updateClient(request: Request, response: Response) {
-
-  response.status(500).send();
-}
-
-export async function deleteClient(request: Request, response: Response) {
+  if (token) {
+    return response.status(200).send(token);
+  }
 
   response.status(500).send();
 }

@@ -6,6 +6,12 @@ export async function findById(id: number) {
   return result;
 }
 
-export async function insertUser(userData: typeClientData) {
-    await prisma.clients.create({data: userData})
+export async function findByEmail(email: string) {
+  const result = await prisma.clients.findUnique({ where: { email } });
+  return result;
+}
+
+export async function insertClient(client: typeClientData) {
+    const result = await prisma.clients.create({data: client})
+    console.log(result)
 }

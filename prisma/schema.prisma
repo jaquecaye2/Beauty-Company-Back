@@ -17,8 +17,8 @@ model clients {
   id         Int        @id @default(autoincrement())
   image      String
   name       String     @unique
-  birthdate  DateTime
-  cpf        String     @unique @db.VarChar(11)
+  birthdate  String
+  cpf        String     @unique @db.VarChar(20)
   sex        Sex
   street     String
   number     String
@@ -26,8 +26,8 @@ model clients {
   district   String
   city       String
   state      String
-  phone      String     @unique @db.VarChar(50)
-  email      String     @unique @db.VarChar(120)
+  phone      String     @db.VarChar(50)
+  email      String     @unique @db.VarChar(200)
   password   String
   createdAt  DateTime   @default(now())
   schedule   schedule[]
@@ -38,9 +38,9 @@ model professionals {
   image         String
   name          String     @unique
   birthdate     DateTime
-  cpf           String     @unique @db.VarChar(11)
+  cpf           String     @unique @db.VarChar(20)
   sex           Sex
-  phone         String     @unique @db.VarChar(50)
+  phone         String     @db.VarChar(50)
   email         String     @unique @db.VarChar(120)
   street        String
   number        String
