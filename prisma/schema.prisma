@@ -50,8 +50,9 @@ model professionals {
   state         String
   office        String
   admissiondate DateTime   @default(now())
-  sectors       sectors[]
   schedule      schedule[]
+  sectors       sectors    @relation(fields: [sectors_id], references: [id])
+  sectors_id    Int
 }
 
 model schedule {
@@ -67,16 +68,15 @@ model schedule {
 }
 
 model sectors {
-  id              Int           @id @default(autoincrement())
-  name            String
-  professional_id Int
-  professionals   professionals @relation(fields: [professional_id], references: [id])
-  services        services[]
+  id            Int             @id @default(autoincrement())
+  name          String          @unique
+  professionals professionals[]
+  services      services[]
 }
 
 model services {
   id          Int        @id @default(autoincrement())
-  name        String
+  name        String     @unique
   description String?
   price       Int
   sector_id   Int
