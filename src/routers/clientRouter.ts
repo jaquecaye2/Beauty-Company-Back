@@ -6,10 +6,10 @@ import {
   createClient,
   updateClient,
   deleteClient,
-} from "../../controllers/company/clientController";
-import validateCompany from "../../middlewares/validateCompany";
-import { validateSchema } from "../../middlewares/validateSchema";
-import clientSchema from "../../schemas/clientSchema";
+} from "../controllers/clientController";
+import validateCompany from "../middlewares/validateCompany";
+import { validateSchema } from "../middlewares/validateSchema";
+import clientSchema from "../schemas/clientSchema";
 
 const router = Router();
 

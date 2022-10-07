@@ -2,8 +2,8 @@ import {
   findAll,
   findByName,
   insertSector,
-} from "../../repositories/sectorRepository";
-import { typeSectorData } from "../../types/sectorType";
+} from "../repositories/sectorRepository";
+import { typeSectorData } from "../types/sectorType";
 
 export async function createSectorService(sector: typeSectorData) {
   const findSector = await findByName(sector.name);

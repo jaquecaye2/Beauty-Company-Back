@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { createSectorService, showSectorsService } from "../../services/company/sectorService";
+import { createSectorService, showSectorsService } from "../services/sectorService";
 
-import { typeSectorData } from "../../types/sectorType";
+import { typeSectorData } from "../types/sectorType";
 
 export async function createSector(request: Request, response: Response) {
   const sector: typeSectorData = request.body;

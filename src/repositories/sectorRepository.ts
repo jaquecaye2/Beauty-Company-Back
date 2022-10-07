@@ -2,7 +2,7 @@ import { prisma } from "../config/database";
 
 import { typeSectorData } from "../types/sectorType";
 
-export async function findById(id: number) {
+export async function findByIdSector(id: number) {
   const result = await prisma.sectors.findUnique({ where: { id } });
   return result;
 }

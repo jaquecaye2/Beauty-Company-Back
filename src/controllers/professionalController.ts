@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { createProfessionalService, deleteProfessionalService, showProfessionalService, showProfessionalsService, updateProfessionalService } from "../../services/company/professionalService";
-import { typeProfessionalData } from "../../types/professionalType";
+import { createProfessionalService, deleteProfessionalService, showProfessionalService, showProfessionalsService, updateProfessionalService } from "../services/professionalService";
+import { typeProfessionalData } from "../types/professionalType";
 
 export async function createProfessional(request: Request, response: Response) {
   const professional: typeProfessionalData = request.body;

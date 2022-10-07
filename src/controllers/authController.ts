@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { loginCompany } from "../../services/company/authService";
+import { loginCompany } from "../services/authService";
 
-import { typeCompanyData } from "../../types/companyType";
+import { typeCompanyData } from "../types/companyType";
 
 export async function signin(request: Request, response: Response) {
   const user: typeCompanyData = request.body;

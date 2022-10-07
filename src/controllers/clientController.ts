@@ -5,8 +5,8 @@ import {
   showClientService,
   showClientsService,
   updateClientService,
-} from "../../services/company/clientService";
-import { typeClientData } from "../../types/clientType";
+} from "../services/clientService";
+import { typeClientData } from "../types/clientType";
 
 export async function createClient(request: Request, response: Response) {
   const client: typeClientData = request.body;

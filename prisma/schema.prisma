@@ -57,7 +57,7 @@ model professionals {
 
 model schedule {
   id               Int           @id @default(autoincrement())
-  date             DateTime
+  date             String
   hour             Int
   clients          clients       @relation(fields: [clients_id], references: [id])
   clients_id       Int

@@ -2,9 +2,9 @@ import { Request, Response } from "express";
 import {
   createServiceService,
   showServicesService,
-} from "../../services/company/serviceService";
+} from "../services/serviceService";
 
-import { typeServiceData } from "../../types/serviceType";
+import { typeServiceData } from "../types/serviceType";
 
 export async function createService(request: Request, response: Response) {
   const service: typeServiceData = request.body;

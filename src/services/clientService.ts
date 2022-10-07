@@ -4,11 +4,11 @@ import {
   deleteClientBD,
   findAll,
   findByEmail,
-  findById,
+  findByIdClient,
   insertClient,
   updateClient,
-} from "../../repositories/clientsRepository";
-import { typeClientData } from "../../types/clientType";
+} from "../repositories/clientsRepository";
+import { typeClientData } from "../types/clientType";
 
 export async function createClientService(client: typeClientData) {
   const findClient = await findByEmail(client.email);
@@ -36,7 +36,7 @@ export async function showClientsService() {
 }
 
 export async function showClientService(id: number) {
-  const result = await findById(id);
+  const result = await findByIdClient(id);
 
   if (!result) {
     throw {
@@ -49,7 +49,7 @@ export async function showClientService(id: number) {
 }
 
 export async function updateClientService(id: number, client: typeClientData) {
-  const result = await findById(id);
+  const result = await findByIdClient(id);
 
   if (!result) {
     throw {
@@ -69,7 +69,7 @@ export async function updateClientService(id: number, client: typeClientData) {
 }
 
 export async function deleteClientService(id: number) {
-  const result = await findById(id);
+  const result = await findByIdClient(id);
 
   if (!result) {
     throw {

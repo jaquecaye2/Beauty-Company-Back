@@ -6,10 +6,10 @@ import {
   showProfessional,
   showProfessionals,
   updateProfessional,
-} from "../../controllers/company/professionalController";
-import validateCompany from "../../middlewares/validateCompany";
-import { validateSchema } from "../../middlewares/validateSchema";
-import professionalSchema from "../../schemas/professionalSchema";
+} from "../controllers/professionalController";
+import validateCompany from "../middlewares/validateCompany";
+import { validateSchema } from "../middlewares/validateSchema";
+import professionalSchema from "../schemas/professionalSchema";
 
 const router = Router();
 

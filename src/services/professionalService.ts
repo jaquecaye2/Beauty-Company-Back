@@ -1,10 +1,10 @@
-import { deleteProfessional, findAll, findByEmail, findByIdProfessional, insertProfessional, updateProfessional } from "../../repositories/professionalRepository";
-import { findById } from "../../repositories/sectorRepository";
+import { deleteProfessional, findAll, findByEmail, findByIdProfessional, insertProfessional, updateProfessional } from "../repositories/professionalRepository";
+import { findByIdSector } from "../repositories/sectorRepository";
 
-import { typeProfessionalData } from "../../types/professionalType";
+import { typeProfessionalData } from "../types/professionalType";
 
 export async function createProfessionalService(professional: typeProfessionalData) {
-  const findSector = await findById(professional.sectors_id)
+  const findSector = await findByIdSector(professional.sectors_id)
 
   if (!findSector) {
     throw {

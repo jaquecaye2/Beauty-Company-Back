@@ -1,9 +1,9 @@
 import Jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
-import { typeCompanyData } from "../../types/companyType";
+import { typeCompanyData } from "../types/companyType";
 
-import { findByEmail } from "../../repositories/companiesRepository";
+import { findByEmail } from "../repositories/companiesRepository";
 
 export async function loginCompany(company: typeCompanyData) {
   dotenv.config();

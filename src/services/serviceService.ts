@@ -1,6 +1,6 @@
 
-import { findAll, findByName, insertService } from "../../repositories/serviceRepository";
-import { typeServiceData } from "../../types/serviceType";
+import { findAll, findByName, insertService } from "../repositories/serviceRepository";
+import { typeServiceData } from "../types/serviceType";
 
 export async function createServiceService(service: typeServiceData) {
   const findService = await findByName(service.name);
