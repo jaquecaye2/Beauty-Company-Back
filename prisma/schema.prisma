@@ -37,7 +37,7 @@ model professionals {
   id            Int        @id @default(autoincrement())
   image         String
   name          String     @unique
-  birthdate     DateTime
+  birthdate     String
   cpf           String     @unique @db.VarChar(20)
   sex           Sex
   phone         String     @db.VarChar(50)

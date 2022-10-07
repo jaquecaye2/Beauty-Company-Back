@@ -23,8 +23,7 @@ export async function findAll() {
 }
 
 export async function insertClient(client: typeClientData) {
-  const result = await prisma.clients.create({ data: client });
-  console.log(result);
+  await prisma.clients.create({ data: client });
 }
 
 export async function updateClient(id: number, client: typeClientData) {
