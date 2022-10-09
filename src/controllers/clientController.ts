@@ -4,6 +4,7 @@ import {
   deleteClientService,
   showClientService,
   showClientsService,
+  showMyProfile,
   updateClientService,
 } from "../services/clientService";
 import { typeClientData } from "../types/clientType";
@@ -62,6 +63,18 @@ export async function deleteClient(request: Request, response: Response) {
 
   if (result === "success") {
     return response.status(200).send("Cliente deletado com sucesso");
+  }
+
+  response.status(500).send();
+}
+
+export async function showProfile(request: Request, response: Response) {
+  const client = response.locals.user
+
+  const result = await showMyProfile(client);
+
+  if (result) {
+    return response.status(200).send(result);
   }
 
   response.status(500).send();

@@ -1,17 +1,17 @@
 import bcrypt from "bcrypt";
-
 import {
   deleteClientBD,
   findAll,
-  findByEmail,
+  findByEmailClient,
   findByIdClient,
   insertClient,
   updateClient,
 } from "../repositories/clientsRepository";
 import { typeClientData } from "../types/clientType";
+import { clients } from "@prisma/client";
 
 export async function createClientService(client: typeClientData) {
-  const findClient = await findByEmail(client.email);
+  const findClient = await findByEmailClient(client.email);
 
   if (findClient) {
     throw {
@@ -82,3 +82,19 @@ export async function deleteClientService(id: number) {
 
   return "success";
 }
+
+export async function showMyProfile(client: clients) {
+  const id = client.id
+
+  const result = await findByIdClient(id);
+
+  if (!result) {
+    throw {
+      code: "NotFound",
+      message: "Informe um cliente válido",
+    };
+  }
+
+  return result;
+}
+

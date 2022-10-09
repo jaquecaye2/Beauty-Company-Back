@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
-import { findById } from "../repositories/clientsRepository";
+import { findByEmailClient, findByIdClient } from "../repositories/clientsRepository";
 import Jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
@@ -33,9 +33,16 @@ async function validateClient(
   const secretKey: string = process.env.SECRET_KEY || "";
 
   try {
-    const { id } = Jwt.verify(token, secretKey) as { id: number };
+    const { email } = Jwt.verify(token, secretKey) as { email: string };
 
-    const user = await findById(id);
+    const user = await findByEmailClient(email);
+
+    if (!user){
+      throw {
+        code: "Unauthorized",
+        message: "Login required",
+      };
+    }
 
     response.locals.user = user;
 

@@ -6,7 +6,7 @@ export async function findByIdClient(id: number) {
   return result;
 }
 
-export async function findByEmail(email: string) {
+export async function findByEmailClient(email: string) {
   const result = await prisma.clients.findUnique({ where: { email } });
   return result;
 }
