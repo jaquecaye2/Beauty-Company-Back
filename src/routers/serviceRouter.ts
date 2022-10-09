@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { createService, showServices } from "../controllers/serviceController";
+import { createService, showAllServices, showServices } from "../controllers/serviceController";
+import validateClient from "../middlewares/validateClient";
 
 import validateCompany from "../middlewares/validateCompany";
 import { validateSchema } from "../middlewares/validateSchema";
@@ -9,6 +10,10 @@ const router = Router();
 
 router.post("/service", validateCompany, validateSchema(serviceSchema), createService);
 
-router.get("/service", validateCompany, showServices);
+router.get("/services", validateCompany, showAllServices);
+
+router.get("/service/:idsector", validateCompany, showServices);
+
+router.get("/services/:idsector", validateClient, showServices);
 
 export default router;

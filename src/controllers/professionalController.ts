@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createProfessionalService, deleteProfessionalService, showProfessionalService, showProfessionalsService, updateProfessionalService } from "../services/professionalService";
+import { createProfessionalService, deleteProfessionalService, showProfessionalService, showProfessionalsService, showProfessionalsWithSectorService, updateProfessionalService } from "../services/professionalService";
 import { typeProfessionalData } from "../types/professionalType";
 
 export async function createProfessional(request: Request, response: Response) {
@@ -56,6 +56,18 @@ export async function deleteProfessional(request: Request, response: Response) {
 
   if (result === "success") {
     return response.status(200).send("Profissional deletado com sucesso");
+  }
+
+  response.status(500).send();
+}
+
+export async function showProfessionalsWithSector(request: Request, response: Response) {
+  const id_sector = Number(request.params.id_sector);
+
+  const result = await showProfessionalsWithSectorService(id_sector);
+
+  if (result) {
+    return response.status(200).send(result);
   }
 
   response.status(500).send();

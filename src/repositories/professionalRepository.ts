@@ -6,6 +6,11 @@ export async function findByIdProfessional(id: number) {
   return result;
 }
 
+export async function findByIdProfessionalSector(id: number) {
+  const result = await prisma.professionals.findMany({ where: { sectors_id: id } });
+  return result;
+}
+
 export async function findByEmail(email: string) {
   const result = await prisma.professionals.findUnique({ where: { email } });
   return result;
@@ -14,6 +19,7 @@ export async function findByEmail(email: string) {
 export async function findAll() {
   const result = await prisma.professionals.findMany({
     select: {
+      id: true,
       image: true,
       name: true,
       phone: true,

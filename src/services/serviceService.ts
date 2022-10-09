@@ -1,5 +1,5 @@
 
-import { findAll, findByName, insertService } from "../repositories/serviceRepository";
+import { findAll, findAllAll, findByName, insertService } from "../repositories/serviceRepository";
 import { typeServiceData } from "../types/serviceType";
 
 export async function createServiceService(service: typeServiceData) {
@@ -17,7 +17,12 @@ export async function createServiceService(service: typeServiceData) {
   return "success";
 }
 
-export async function showServicesService() {
-  const result = await findAll();
+export async function showAllServicesService() {
+  const result = await findAllAll();
+  return result;
+}
+
+export async function showServicesService(id: number) {
+  const result = await findAll(id);
   return result;
 }

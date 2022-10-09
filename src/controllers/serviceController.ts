@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import {
   createServiceService,
+  showAllServicesService,
   showServicesService,
 } from "../services/serviceService";
 
@@ -18,8 +19,20 @@ export async function createService(request: Request, response: Response) {
   response.status(500).send();
 }
 
+export async function showAllServices(request: Request, response: Response) {
+  const result = await showAllServicesService();
+
+  if (result) {
+    return response.status(200).send(result);
+  }
+
+  response.status(500).send();
+}
+
 export async function showServices(request: Request, response: Response) {
-  const result = await showServicesService();
+  const id_sector = Number(request.params.idsector);
+
+  const result = await showServicesService(id_sector);
 
   if (result) {
     return response.status(200).send(result);

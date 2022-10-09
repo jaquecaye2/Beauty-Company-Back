@@ -1,4 +1,4 @@
-import { deleteProfessional, findAll, findByEmail, findByIdProfessional, insertProfessional, updateProfessional } from "../repositories/professionalRepository";
+import { deleteProfessional, findAll, findByEmail, findByIdProfessional, findByIdProfessionalSector, insertProfessional, updateProfessional } from "../repositories/professionalRepository";
 import { findByIdSector } from "../repositories/sectorRepository";
 
 import { typeProfessionalData } from "../types/professionalType";
@@ -73,4 +73,17 @@ export async function deleteProfessionalService(id: number) {
   await deleteProfessional(id)
 
   return "success";
+}
+
+export async function showProfessionalsWithSectorService(id: number) {
+  const result = await findByIdProfessionalSector(id);
+
+  if (!result) {
+    throw {
+      code: "NotFound",
+      message: "Informe um setor válido",
+    };
+  }
+
+  return result;
 }

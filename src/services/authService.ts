@@ -68,5 +68,5 @@ export async function loginClient(client: typeCompanyData) {
 
   const token = Jwt.sign({ id: iduser, email: emailuser}, secretKey, config);
 
-  return token;
+  return {iduser, token};
 }

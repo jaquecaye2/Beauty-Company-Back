@@ -12,8 +12,15 @@ export async function findByName(name: string) {
   return result;
 }
 
-export async function findAll() {
-  const result = await prisma.services.findMany();
+export async function findAll(id: number) {
+  const result = await prisma.services.findMany({ where: { sector_id: id } });
+  return result;
+}
+
+export async function findAllAll() {
+  const result = await prisma.services.findMany({
+    include: { sectors: { select: { name: true } } },
+  });
   return result;
 }
 
