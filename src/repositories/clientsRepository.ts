@@ -14,6 +14,7 @@ export async function findByEmailClient(email: string) {
 export async function findAll() {
   const result = await prisma.clients.findMany({
     select: {
+      id: true,
       image: true,
       name: true,
       phone: true,
@@ -31,5 +32,6 @@ export async function updateClient(id: number, client: typeClientData) {
 }
 
 export async function deleteClientBD(id: number) {
-  await prisma.clients.delete({ where: { id } });
+  const result = await prisma.clients.delete({ where: { id } });
+  console.log(result)
 }

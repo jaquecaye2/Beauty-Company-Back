@@ -4,7 +4,9 @@ import { findByIdSector } from "../repositories/sectorRepository";
 import { typeProfessionalData } from "../types/professionalType";
 
 export async function createProfessionalService(professional: typeProfessionalData) {
-  const findSector = await findByIdSector(professional.sectors_id)
+  const sector_id = Number(professional.sectors_id)
+
+  const findSector = await findByIdSector(sector_id)
 
   if (!findSector) {
     throw {
@@ -21,6 +23,8 @@ export async function createProfessionalService(professional: typeProfessionalDa
       message: "E-mail já cadastrado",
     };
   }
+
+  professional.sectors_id = sector_id
 
   await insertProfessional(professional);
 

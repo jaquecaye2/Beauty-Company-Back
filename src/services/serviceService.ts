@@ -12,6 +12,9 @@ export async function createServiceService(service: typeServiceData) {
     };
   }
 
+  service.sector_id = Number(service.sector_id)
+  service.price = Number(service.price)
+
   await insertService(service);
 
   return "success";

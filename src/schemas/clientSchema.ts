@@ -5,7 +5,7 @@ const clientSchema = joi.object<typeClientData>({
   number: joi.string().max(5).required(),
   image: joi.string().uri().required(),
   name: joi.string().required(),
-  birthdate: joi.date().required(),
+  birthdate: joi.date().required().label("Data de aniversário deve ser válida"),
   cpf: joi.string().min(11).max(20).required(),
   sex: joi.string().required().valid("female", "male", "other"),
   street: joi.string().required(),
